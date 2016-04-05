@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 # start mysql
-service mysql start
+if pgrep mysqld >/dev/null
+then
+  service mysql start
+fi
 
 # start apache
-service apache2 start
+if pgrep apache2 >/dev/null
+then
+  service apache2 start
+fi
 
 # tail the log files
 tail -f /var/log/apache2/access.log
